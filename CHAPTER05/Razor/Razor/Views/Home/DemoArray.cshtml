@@ -1,0 +1,29 @@
+﻿@using Razor.Models
+@model Product[]
+
+@{
+    ViewBag.Title = "DemoArray";
+}
+
+@if (Model.Length > 0) 
+{
+    <table>
+        <thead>
+            <tr><th>Product</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+            @foreach (Product product in Model)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>$@product.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table> 
+}
+else
+{
+    <h2>No products found!</h2>
+}
+

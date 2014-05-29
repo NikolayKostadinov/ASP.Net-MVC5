@@ -29,6 +29,22 @@
                 }
             </td>
         </tr>
+        <tr><td>Stock Level If </td>
+        <td>
+            @if (ViewBag.ProductCount == 0) 
+            {
+                @:Out Of Stock 
+            }
+            else if (ViewBag.ProductCount == 1)
+            {
+                <b>Low Stock:  @ViewBag.ProductCount</b>
+            }
+            else
+            {
+                @ViewBag.ProductCount 
+            }
+        </td>
+        </tr>
     </tbody>
 </table>
 <div data-discount="@ViewBag.ApplyDiscount"

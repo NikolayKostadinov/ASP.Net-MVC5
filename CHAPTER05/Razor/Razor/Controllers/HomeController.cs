@@ -31,7 +31,7 @@ namespace Razor.Controllers
 
         public ActionResult DemoExpression() 
         {
-            ViewBag.ProductCount = 0;
+            ViewBag.ProductCount = 2;
             ViewBag.ExpressShip = true;
             ViewBag.ApplyDiscount = false;
             ViewBag.Supplier = "Some Supplier";
