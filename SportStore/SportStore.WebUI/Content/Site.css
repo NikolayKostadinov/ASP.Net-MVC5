@@ -1,0 +1,21 @@
+﻿div.fixed {
+    height: 400px;
+    overflow-y: auto;
+}
+
+span.float-right {
+    float: right;
+}
+
+.clear {
+    float: none;
+}
+
+.table-unbordered {
+    border: none;
+    margin-bottom: 0px;
+}
+
+.panel-heading-unpaded {
+    padding: 0px;
+}
