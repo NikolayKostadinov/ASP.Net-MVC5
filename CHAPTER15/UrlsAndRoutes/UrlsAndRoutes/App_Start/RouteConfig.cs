@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Mvc.Routing.Constraints;
+using UrlsAndRoutes.Infrastructure;
 
 namespace UrlsAndRoutes
 {
@@ -11,21 +13,35 @@ namespace UrlsAndRoutes
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.MapRoute("AdditionalControllerRoute", "Home/{action}/{id}/{*catchall}",
+            routes.MapMvcAttributeRoutes();
+
+            routes.MapRoute("CustomeConstraintRoute", "Customer/List/{id}/{*catchall}",
+                new
+                {
+                    controller= "Customer",
+                    action="List",
+                    id = UrlParameter.Optional
+                },
+                new
+                {
+                    customConstraint = new UserAgentConstraint("Chrome")
+                });
+
+            routes.MapRoute("DefaultRoute", "{controller}/{action}/{id}/{*catchall}",
                 new
                 {
                     controller = "Home",
                     action = "Index",
-                    id = UrlParameter.Optional,
-                }, new[] { "UrlsAndRoutes.AdditionalControllers" });
-            
-            routes.MapRoute("MyRoute", "{controller}/{action}/{id}/{*catchall}",
+                    id = 0
+                },
                 new
                 {
-                    controller = "Home",
-                    action = "Index",
-                    id = UrlParameter.Optional,
-                }, new[] { "UrlsAndRoutes.Controllers" });            
+                    controller = "^H.*",
+                    action = "^Index$|^About$|^CustomVariable$",
+                    httpMethod = new HttpMethodConstraint("GET"),
+                    id = new IntRouteConstraint()
+                },
+                new[] { "UrlsAndRoutes.Controllers" });
         }
     }
 }
