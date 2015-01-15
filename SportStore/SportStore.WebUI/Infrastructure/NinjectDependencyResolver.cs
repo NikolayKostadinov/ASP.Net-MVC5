@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
@@ -10,6 +11,8 @@
     using SportStore.Domain.Abstract;
     using SportStore.Domain.Concrete;
     using SportStore.Domain.Entities;
+    using SportStore.WebUI.Infrastructure.Abstract;
+    using SportStore.WebUI.Infrastructure.Concrete;
 
     public class NinjectDependencyResolver : IDependencyResolver
     {
@@ -33,6 +36,16 @@
 
             //Adding repository
             kernel.Bind<IProductRepository>().To < EFProductRepository>();
+
+            //Adding order processor
+            EmailSettings emailSettings = new EmailSettings
+            {
+                WriteAsFile = bool.Parse(ConfigurationManager
+                .AppSettings["Email.WriteAsFile"] ?? "false")
+            };
+            kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>()
+            .WithConstructorArgument("settings", emailSettings);
+            kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
         }
 
         /// <summary>

@@ -1,21 +1,25 @@
 ﻿div.fixed {
-    height: 400px;
     overflow-y: auto;
+    height: 300px;
 }
 
-span.float-right {
-    float: right;
-}
-
-.clear {
-    float: none;
-}
-
-.table-unbordered {
-    border: none;
-    margin-bottom: 0px;
-}
-
-.panel-heading-unpaded {
+.nopadding {
     padding: 0px;
+}
+
+.nomargin {
+    margin: 0px;
+}
+
+.overflowx-hidden {
+    overflow-x: hidden;
+}
+
+.panel-shipping-details {
+    height: 598px;
+}
+
+.panel-shipping-details-body {
+    height:93%;
+    overflow-y: auto;
 }

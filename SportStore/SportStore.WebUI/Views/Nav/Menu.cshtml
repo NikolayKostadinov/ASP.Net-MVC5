@@ -2,11 +2,10 @@
 @model CategoryListView
 
 <div class="panel-heading">Categories</div>
-<div class="panel-body">
+<div class="panel-body overflowx-hidden">
     <ul class="nav nav-pills nav-stacked">
         <li role="presentation" @((@Model.CurrentCategory == null || "Home" == @Model.CurrentCategory) ? " class = active" : "")>
-            @Html.ActionLink("Home", "List", "Product")
-
+            @Html.ActionLink("Home", "List", "Product", null, new { @class = "text-center" })
         </li>
 
         @foreach (var link in Model.Categories)
@@ -19,7 +18,7 @@
                 action = "List",
                 category = link,
                 page = 1
-            })
+            }, new { @class = "text-center" })
             </li>
         }
     </ul>

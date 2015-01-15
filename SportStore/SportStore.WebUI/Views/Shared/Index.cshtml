@@ -9,8 +9,8 @@
     }
 </style>
 
-<div class="panel-heading panel-heading-unpaded">
-    <table class="table table-unbordered">
+<div class="panel-heading nopadding">
+    <table class="table nomargin">
         <thead>
             <tr>
                 <td class="text-left">@ViewBag.Title</td>
@@ -21,14 +21,13 @@
 </div>
 
 <div class="panel-body fixed">
-    <table id="cartTable" class="table table-responsive">
+    <table id="cartTable" class="table table-condensed table-responsive">
         <thead>
             <tr>
                 <th>Quantity</th>
                 <th>Item</th>
                 <th class="text-right">Price</th>
                 <th class="text-right">Subtotal</th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -59,8 +58,8 @@
                 <td class="text-right">
                     @Model.Cart.ComputeTotalValue().ToString("c")
                 </td>
-                <td></td>
             </tr>
         </tfoot>
     </table>
 </div>
+
